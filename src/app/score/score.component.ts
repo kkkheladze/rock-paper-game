@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Injectable, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-score',
@@ -6,11 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./score.component.sass']
 })
 export class ScoreComponent implements OnInit {
-  score!:number;
+  score:number=0;
   constructor() { }
 
   ngOnInit(): void {
-    this.score=12
   }
-
 }
