@@ -1,19 +1,60 @@
-<div class="buttons-wrapper mt-3">
-  <div type="button" class="d-inline-block buttons" id="paper">
+<div *ngIf="!selected" class="buttons-wrapper mt-3" >
+  <div type="button" class="d-inline-block buttons paper"
+    (click)="play('paper')">
     <div class="moveButtonInner">
       <img src="assets/images/icon-paper.svg" alt="paper">
     </div>
   </div>
-  <div type="button" class="d-inline-block buttons" id="scissors">
+  <div type="button" class="d-inline-block buttons scissors"
+       (click)="play('scissors')">
     <div class="d-inline-block moveButtonInner">
       <img src="assets/images/icon-scissors.svg" alt="scissors">
     </div>
   </div>
   <div class="d-flex justify-content-center align-items-center w-100 h-auto">
-    <div type="button" class="buttons" id="rock">
+    <div type="button" class="buttons rock"
+         (click)="play('rock')">
       <div class="moveButtonInner">
         <img src="assets/images/icon-rock.svg" alt="rock">
       </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="resultModal" [ngClass]="result==='You Win!'?'alert-success':result==='You Lose!'?'alert-danger':'alert-warning'" class="alert fade show" role="alert">
+  {{result}}
+</div>
+
+<div *ngIf="selected" class="d-flex justify-content-center align-items-center">
+  <div *ngIf="selectedMove==='paper'" class="d-inline-block buttons paper">
+    <div class="moveButtonInner">
+      <img src="assets/images/icon-paper.svg" alt="paper">
+    </div>
+  </div>
+  <div *ngIf="selectedMove==='scissors'" class="d-inline-block buttons scissors">
+    <div class="d-inline-block moveButtonInner">
+      <img src="assets/images/icon-scissors.svg" alt="scissors">
+    </div>
+  </div>
+  <div *ngIf="selectedMove==='rock'" class="d-inline-block buttons rock">
+    <div class="d-inline-block moveButtonInner">
+      <img src="assets/images/icon-rock.svg" alt="rock">
+    </div>
+  </div>
+
+  <div *ngIf="computerMove==='paper'" class="d-inline-block buttons paper">
+    <div class="moveButtonInner">
+      <img src="assets/images/icon-paper.svg" alt="paper">
+    </div>
+  </div>
+  <div *ngIf="computerMove==='scissors'" class="d-inline-block buttons scissors">
+    <div class="d-inline-block moveButtonInner">
+      <img src="assets/images/icon-scissors.svg" alt="scissors">
+    </div>
+  </div>
+  <div *ngIf="computerMove==='rock'" class="d-inline-block buttons rock">
+    <div class="d-inline-block moveButtonInner">
+      <img src="assets/images/icon-rock.svg" alt="rock">
     </div>
   </div>
 </div>

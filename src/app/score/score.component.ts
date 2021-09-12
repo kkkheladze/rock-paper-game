@@ -1,4 +1,5 @@
 import {Component, Injectable, OnInit} from '@angular/core';
+import {StateService} from "../shared/state.service";
 
 @Component({
   selector: 'app-score',
@@ -7,8 +8,12 @@ import {Component, Injectable, OnInit} from '@angular/core';
 })
 export class ScoreComponent implements OnInit {
   score:number=0;
-  constructor() { }
+  constructor(private stateService:StateService) { }
 
   ngOnInit(): void {
+    this.stateService.score.subscribe(x=>{
+      this.score=x
+      }
+    )
   }
 }
