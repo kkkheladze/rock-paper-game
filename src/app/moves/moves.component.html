@@ -1,3 +1,9 @@
+<div [ngClass]="result==='You Win!'?'alert-success':
+     result==='You Lose!'?'alert-danger':'alert-warning'"
+     class="alert fade show text-center" role="alert" style="margin-top: 2em">
+  {{result||"Waiting For Your Move!"}}
+</div>
+
 <div *ngIf="!selected" class="buttons-wrapper mt-3 box">
   <div type="button" class="d-inline-block buttons paper"
     (click)="play('paper')">
@@ -19,13 +25,6 @@
       </div>
     </div>
   </div>
-</div>
-
-<div *ngIf="resultModal"
-     [ngClass]="result==='You Win!'?'alert-success':
-     result==='You Lose!'?'alert-danger':'alert-warning'"
-     class="alert fade show text-center" role="alert" style="margin-top: 2em">
-  {{result}}
 </div>
 
 <div *ngIf="selected" class="d-flex justify-content-center align-items-center">
@@ -63,4 +62,7 @@
 </div>
 <div *ngIf="resultModal" class="d-flex justify-content-center m-4" >
   <button class="btn btn-light btn-lg" (click)="playAgain()">Play Again!</button>
+</div>
+<div class="d-flex justify-content-center m-4" >
+  <button class="btn btn-outline-danger btn-lg" [disabled]="this.score$===0" (click)="resetScore()">Reset The Score!</button>
 </div>

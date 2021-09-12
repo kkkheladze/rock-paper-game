@@ -101,6 +101,11 @@ export class MovesComponent implements OnInit {
   }
   playAgain(){
     this.selected=false;
-    this.resultModal=false;
+    this.result='Waiting For Your Move!'
+  }
+  resetScore(){
+    this.score$=0;
+    this.stateService.setScore(this.score$);
+    this.playAgain();
   }
 }
