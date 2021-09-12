@@ -1,11 +1,30 @@
 import { EventEmitter } from '@angular/core';
 import {Component, OnInit, Output} from '@angular/core';
 import {StateService} from "../shared/state.service";
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-moves',
   templateUrl: './moves.component.html',
-  styleUrls: ['./moves.component.sass']
+  styleUrls: ['./moves.component.sass'],
+  animations: [
+    // the fade-in/fade-out animation.
+    trigger('simpleFadeAnimation', [
+
+      // the "in" style determines the "resting" state of the element when it is visible.
+      state('in', style({opacity: 1})),
+
+      // fade in when created. this could also be written as transition('void => *')
+      transition(':enter', [
+        style({opacity: 0}),
+        animate(200)
+      ]),
+
+      // fade out when destroyed. this could also be written as transition('void => *')
+      transition(':leave',
+        animate(400, style({opacity: 0})))
+    ])
+  ]
 })
 export class MovesComponent implements OnInit {
   score$!:number;
@@ -53,7 +72,7 @@ export class MovesComponent implements OnInit {
         this.score$--;
         return "You Lose!"
       }else{
-        return "Draw!"
+        return "It's a Draw!"
       }
     }
     if(this.selectedMove==='rock'){
@@ -64,7 +83,7 @@ export class MovesComponent implements OnInit {
         this.score$--;
         return "You Lose!"
       }else{
-        return "Draw!"
+        return "It's a Draw!"
       }
     }
     if(this.selectedMove==='scissors'){
@@ -75,9 +94,13 @@ export class MovesComponent implements OnInit {
         this.score$--;
         return "You Lose!"
       }else{
-        return "Draw!"
+        return "It's a Draw!"
       }
     }
     return "Something Went Wrong!"
+  }
+  playAgain(){
+    this.selected=false;
+    this.resultModal=false;
   }
 }

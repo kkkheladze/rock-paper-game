@@ -1,4 +1,4 @@
-<div *ngIf="!selected" class="buttons-wrapper mt-3" >
+<div *ngIf="!selected" class="buttons-wrapper mt-3 box">
   <div type="button" class="d-inline-block buttons paper"
     (click)="play('paper')">
     <div class="moveButtonInner">
@@ -21,7 +21,10 @@
   </div>
 </div>
 
-<div *ngIf="resultModal" [ngClass]="result==='You Win!'?'alert-success':result==='You Lose!'?'alert-danger':'alert-warning'" class="alert fade show" role="alert">
+<div *ngIf="resultModal"
+     [ngClass]="result==='You Win!'?'alert-success':
+     result==='You Lose!'?'alert-danger':'alert-warning'"
+     class="alert fade show text-center" role="alert" style="margin-top: 2em">
   {{result}}
 </div>
 
@@ -57,4 +60,7 @@
       <img src="assets/images/icon-rock.svg" alt="rock">
     </div>
   </div>
+</div>
+<div *ngIf="resultModal" class="d-flex justify-content-center m-4" >
+  <button class="btn btn-light btn-lg" (click)="playAgain()">Play Again!</button>
 </div>
